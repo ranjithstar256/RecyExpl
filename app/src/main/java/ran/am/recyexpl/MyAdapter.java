@@ -14,10 +14,11 @@ import java.util.List;
 
 public class MyAdapter  extends RecyclerView.Adapter<MyAdapter.VHodr>{
     List<DemoModel> MyListData;
+    LisenDo llisenDo;
 
-    public MyAdapter() {
+    public MyAdapter(LisenDo li) {
         MyListData= new ArrayList<>();
-
+        this.llisenDo=li;
     }
 
     @Override
@@ -53,6 +54,12 @@ public class MyAdapter  extends RecyclerView.Adapter<MyAdapter.VHodr>{
             t1=itemView.findViewById(R.id.textView);
             t2=itemView.findViewById(R.id.textView2);
             img=itemView.findViewById(R.id.imageView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    llisenDo.iamdo(getAdapterPosition());
+                }
+            });
     }
 }
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import ran.am.recyexpl.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding am;
     Bitmap bmp = null;
+    LisenDo lisenDo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,14 @@ public class MainActivity extends AppCompatActivity {
         am= DataBindingUtil.setContentView(this,R.layout.activity_main);
         am.recyid.setLayoutManager(new LinearLayoutManager(this));
 
-        MyAdapter myAdapter = new MyAdapter();
+        lisenDo=new LisenDo() {
+            @Override
+            public void iamdo(int p) {
+                Toast.makeText(MainActivity.this, "you have clicked on "+p, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        MyAdapter myAdapter = new MyAdapter(lisenDo);
         am.recyid.setAdapter(myAdapter);
         myAdapter.setData(getValues());
 
